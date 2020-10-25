@@ -29,6 +29,9 @@ const DeleteButton = ({ postId, callback, commentId }) => {
       postId,
       commentId,
     },
+    onError(err) {
+      console.log(err);
+    },
   });
   return (
     <>

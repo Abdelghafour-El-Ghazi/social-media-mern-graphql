@@ -15,7 +15,6 @@ import {
 import { AuthContext } from "../context/auth";
 import LikeButton from "../components/LikeButton";
 import DeleteButton from "../components/DeleteButton";
-import MyPopup from "../util/MyPopup";
 
 const SinglePost = (props) => {
   const postId = props.match.params.postId;
