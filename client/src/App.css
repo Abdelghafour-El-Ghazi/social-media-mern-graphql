@@ -14,3 +14,16 @@
 .ui.teal.buttons .button:focus {
   background-color: #00b5ad;
 }
+@media screen and (max-width: 800px) {
+  .ui.grid > .row {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, 320px) !important;
+    gap: 20px !important;
+    justify-content: center !important;
+    padding-bottom: 50px !important;
+  }
+  .ui[class*="three column"].grid > .column:not(.row),
+  .ui[class*="three column"].grid > .row > .column {
+    width: 360px;
+  }
+}

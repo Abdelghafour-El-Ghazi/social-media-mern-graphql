@@ -9,7 +9,16 @@ import DeleteButton from "./DeleteButton";
 import MyPopup from "../util/MyPopup";
 
 const PostCard = ({
-  post: { body, createdAt, id, username, likeCount, commentCount, likes },
+  post: {
+    body,
+    createdAt,
+    id,
+    username,
+    likeCount,
+    commentCount,
+    likes,
+    selectedFile,
+  },
 }) => {
   const { user } = useContext(AuthContext);
 
@@ -21,11 +30,23 @@ const PostCard = ({
           size='mini'
           src='https://react.semantic-ui.com/images/avatar/large/molly.png'
         />
-        <Card.Header>{username}</Card.Header>
+        <Card.Header as={Link} to={`/users/${username}`}>
+          {username}
+        </Card.Header>
         <Card.Meta as={Link} to={`/posts/${id}`}>
           {moment(createdAt).fromNow(true)}
         </Card.Meta>
-        <Card.Description>{body}</Card.Description>
+        <Card.Description style={{ marginBottom: 20, fontWeight: "bold" }}>
+          {body}
+        </Card.Description>
+        <Image
+          src={
+            selectedFile ||
+            "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
+          }
+          size='medium'
+          centered
+        />
       </Card.Content>
       <Card.Content extra>
         <LikeButton user={user} post={{ id, likes, likeCount }} />

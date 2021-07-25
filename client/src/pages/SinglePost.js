@@ -1,6 +1,7 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
 import gql from "graphql-tag";
 import { useQuery, useMutation } from "@apollo/react-hooks";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import {
   Button,
@@ -79,9 +80,19 @@ const SinglePost = (props) => {
           </Grid.Column>
           <Card fluid>
             <Card.Content>
-              <Card.Header>{username}</Card.Header>
+              <Card.Header as={Link} to={`/users/${username}`}>
+                {username}
+              </Card.Header>
               <Card.Meta>{moment(createdAt).fromNow()}</Card.Meta>
               <Card.Description>{body}</Card.Description>
+              <Image
+                src={
+                  post.selectedFile ||
+                  "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
+                }
+                size='medium'
+                centered
+              />
             </Card.Content>
             <hr />
             <Card.Content extra>
@@ -168,6 +179,7 @@ const FETCH_POST_QUERY = gql`
     getPost(postId: $postId) {
       id
       body
+      selectedFile
       createdAt
       username
       likeCount
